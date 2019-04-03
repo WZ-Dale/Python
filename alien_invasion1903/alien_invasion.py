@@ -1,32 +1,29 @@
-# -*- coding:GBK -*-
+# -*- coding: utf-8 -*-
 
 import sys
 import pygame
-from settings import Settings							#µ¼ÈëSettingsÀà
+from settings import Settings							#å¯¼å…¥Settingsç±»
 from ship import Ship
+import game_function as gf
 
 def run_game():
-	#³õÊ¼»¯ÓÎÏ·²¢´´½¨Ò»¸öÆÁÄ»¶ÔÏó
-	pygame.init()										#³õÊ¼»¯ÓÎÏ·
-	ai_settings = Settings()							#´´½¨Ò»¸öSettingsÊµÀı,²¢´æ´¢µ½±äÁ¿ai_settingsÖĞ
+	#åˆå§‹åŒ–æ¸¸æˆå¹¶åˆ›å»ºä¸€ä¸ªå±å¹•å¯¹è±¡
+	pygame.init()										#åˆå§‹åŒ–æ¸¸æˆ
+	ai_settings = Settings()							#åˆ›å»ºä¸€ä¸ªSettingså®ä¾‹,å¹¶å­˜å‚¨åˆ°å˜é‡ai_settingsä¸­
 	screen = pygame.display.set_mode(
-		(ai_settings.screen_width, ai_settings.screen_height))		#´´½¨Ò»¸ö´°¿Ú¶ÔÏó
-	pygame.display.set_caption("Alien Invasion")		#´°¿ÚÃüÃû
-	#´´½¨Ò»ËÒ·É´¬
+		(ai_settings.screen_width, ai_settings.screen_height))		#åˆ›å»ºä¸€ä¸ªçª—å£å¯¹è±¡
+	pygame.display.set_caption("Alien Invasion")		#çª—å£å‘½å
+	#åˆ›å»ºä¸€è‰˜é£èˆ¹
 	ship = Ship(screen)
 	
-	#¿ªÊ¼ÓÎÏ·µÄÖ÷Ñ­»·
-	while True:
-		
-		#¼àÊÓ¼üÅÌºÍÊó±êÊÂ¼ş
-		for event in pygame.event.get():				#¼üÅÌºÍÊó±êÊÂ¼ş»á´¥·¢forÑ­»·
-			if event.type == pygame.QUIT:				#Èç¹û°´ÁËÍË³ö¼ü
-				sys.exit()								#ÍË³ö
-				
-		#ÈÃ×î½ü»æÖÆµÄÆÁÄ»¿É¼û
-		screen.fill(ai_settings.bg_color)				#Ê¹ÓÃÑÕÉ«Ìî³äÆÁÄ»
-		ship.blitme()									#»æÖÆ·É´¬,È·±£·É´¬ÔÚ±³¾°Ç°
-		pygame.display.flip()							#Ë¢ĞÂ×î½ü»æÖÆµÄÆÁÄ»
+	#å¼€å§‹æ¸¸æˆçš„ä¸»å¾ªç¯
+	while True:	
+		#ç›‘è§†é”®ç›˜å’Œé¼ æ ‡äº‹ä»¶
+		gf.check_events()
+		#è®©æœ€è¿‘ç»˜åˆ¶çš„å±å¹•å¯è§
+		screen.fill(ai_settings.bg_color)				#ä½¿ç”¨é¢œè‰²å¡«å……å±å¹•
+		ship.blitme()									#ç»˜åˆ¶é£èˆ¹,ç¡®ä¿é£èˆ¹åœ¨èƒŒæ™¯å‰
+		pygame.display.flip()							#åˆ·æ–°æœ€è¿‘ç»˜åˆ¶çš„å±å¹•
 		
 		
 run_game()

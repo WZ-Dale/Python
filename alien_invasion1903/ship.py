@@ -1,21 +1,21 @@
-# -*- coding:GBK -*-
+# -*- coding: utf-8 -*-
 
 import pygame
 
 class Ship():
 	def __init__(self, screen):
-		"""³õÊ¼»¯·É´¬²¢ÉèÖÃÆä³õÊ¼Î»ÖÃ"""
+		"""åˆå§‹åŒ–é£èˆ¹å¹¶è®¾ç½®å…¶åˆå§‹ä½ç½®"""
 		self.screen = screen
 		
-		#¼ÓÔØ·É´¬Í¼Ïñ²¢»ñÈ¡ÆäÍâ½Ó¾ØĞÎ
-		self.image = pygame.image.load('images/ship.bmp')	#¼ÓÔØ²¢´æ´¢·É´¬
-		self.rect = self.image.get_rect()					#»ñÈ¡surfaceÊôĞÔrect(·É´¬¾ØĞÎ)
-		self.screen_rect = screen.get_rect()				#»ñÈ¡ÆÁÄ»¾ØĞÎ
+		#åŠ è½½é£èˆ¹å›¾åƒå¹¶è·å–å…¶å¤–æ¥çŸ©å½¢
+		self.image = pygame.image.load('images/ship.bmp')	#åŠ è½½å¹¶å­˜å‚¨é£èˆ¹
+		self.rect = self.image.get_rect()					#è·å–surfaceå±æ€§rect(é£èˆ¹çŸ©å½¢)
+		self.screen_rect = screen.get_rect()				#è·å–å±å¹•çŸ©å½¢
 		
-		#½«Ã¿ËÒ·É´¬·ÅÔÚÆÁÄ»µ×²¿ÖĞÑë
-		self.rect.centerx = self.screen_rect.centerx		#ÆÁÄ»ÖĞÑëxÖµ¸³¸ø·É´¬ÖĞÑëx
-		self.rect.bottom = self.screen_rect.bottom			#ÆÁÄ»µ×²¿yÖµ¸³¸ø·É´¬µ×²¿y
+		#å°†æ¯è‰˜é£èˆ¹æ”¾åœ¨å±å¹•åº•éƒ¨ä¸­å¤®
+		self.rect.centerx = self.screen_rect.centerx		#å±å¹•ä¸­å¤®xå€¼èµ‹ç»™é£èˆ¹ä¸­å¤®x
+		self.rect.bottom = self.screen_rect.bottom			#å±å¹•åº•éƒ¨yå€¼èµ‹ç»™é£èˆ¹åº•éƒ¨y
 		
 	def blitme(self):
-		"""ÔÚÖ¸¶¨Î»ÖÃ»æÖÆ·É´¬"""
-		self.screen.blit(self.image, self.rect)				#¸ù¾İself.rectÖ¸¶¨Î»ÖÃ½«·É´¬»æÖÆÔÚÆÁÄ»ÉÏ
+		"""åœ¨æŒ‡å®šä½ç½®ç»˜åˆ¶é£èˆ¹"""
+		self.screen.blit(self.image, self.rect)				#æ ¹æ®self.rectæŒ‡å®šä½ç½®å°†é£èˆ¹ç»˜åˆ¶åœ¨å±å¹•ä¸Š
