@@ -21,9 +21,7 @@ def run_game():
 		#监视键盘和鼠标事件
 		gf.check_events()
 		#让最近绘制的屏幕可见
-		screen.fill(ai_settings.bg_color)				#使用颜色填充屏幕
-		ship.blitme()									#绘制飞船,确保飞船在背景前
-		pygame.display.flip()							#刷新最近绘制的屏幕
+		gf.update_screen(ai_settings, screen, ship)
 		
 		
 run_game()
