@@ -50,7 +50,7 @@ class ComThread:
                     arr1 = temp.split('：')
                     arr2 = arr1[1].split('\r')[:1]
                     self.direction = int(arr2[0])
-                    
+                    print(self.direction)
                 except:
                     print("读取错误，请重试！\n")
             a = int((self.direction + 4) / 10) * 10
