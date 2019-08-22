@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import sys
 import pygame
 from settings import Settings							#导入Settings类
@@ -10,8 +8,7 @@ def run_game():
 	#初始化游戏并创建一个屏幕对象
 	pygame.init()										#初始化游戏
 	ai_settings = Settings()							#创建一个Settings实例,并存储到变量ai_settings中
-	screen = pygame.display.set_mode(
-		(ai_settings.screen_width, ai_settings.screen_height))		#创建一个窗口对象
+	screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))		#创建一个窗口对象
 	pygame.display.set_caption("Alien Invasion")		#窗口命名
 	#创建一艘飞船
 	ship = Ship(screen)
