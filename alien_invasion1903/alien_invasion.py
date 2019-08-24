@@ -16,7 +16,9 @@ def run_game():
 	#开始游戏的主循环
 	while True:	
 		#监视键盘和鼠标事件
-		gf.check_events()
+		gf.check_events(ship)
+		#根据按键更新飞船位置
+		ship.update()
 		#让最近绘制的屏幕可见
 		gf.update_screen(ai_settings, screen, ship)
 		
