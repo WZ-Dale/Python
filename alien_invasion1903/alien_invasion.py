@@ -2,6 +2,7 @@ import sys
 import pygame
 from pygame.sprite import Group
 from settings import Settings							#导入Settings类
+from game_stats import GameStats
 from ship import Ship
 from alien import Alien
 import game_function as gf
@@ -12,6 +13,8 @@ def run_game():
 	ai_settings = Settings()							#创建一个Settings实例,并存储到变量ai_settings中
 	screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))		#创建一个窗口对象
 	pygame.display.set_caption("Alien Invasion")		#窗口命名
+	#创建一个用于存储游戏统计信息的实例
+	stats = GameStats(ai_settings)
 	#创建一艘飞船
 	ship = Ship(ai_settings, screen)
 	#创建一个用于存储子弹的编组
@@ -25,12 +28,13 @@ def run_game():
 	while True:	
 		#监视键盘和鼠标事件
 		gf.check_events(ai_settings, screen, ship, bullets)
-		#根据按键更新飞船位置
-		ship.update()
-		#更新子弹位置
-		gf.update_bullets(bullets)
-		#更新外星人位置
-		gf.update_aliens(ai_settings, aliens)
+		if stats.game_active:
+			#根据按键更新飞船位置
+			ship.update()
+			#更新子弹位置
+			gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+			#更新外星人位置
+			gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 		#让最近绘制的屏幕可见
 		gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 			
