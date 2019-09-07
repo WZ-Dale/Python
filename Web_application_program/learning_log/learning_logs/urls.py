@@ -8,9 +8,9 @@ urlpatterns = [
     # 主页.
     url(r'^$', views.index, name='index'),
     
-    # Show all topics.
-    #url(r'^topics/$', views.topics, name='topics'),
+    # 显示所有的主题.
+    url(r'^topics/$', views.topics, name='topics'),
     
-    # Detail page for a single topic.
-    #url(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
+    # 特定主题的详细页面.
+    url(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
 ]
