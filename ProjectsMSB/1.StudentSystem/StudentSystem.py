@@ -85,7 +85,49 @@ def save(lst):
     stu_txt.close()
 
 def search():
-    pass
+    student_query = []
+    while True:
+        id = ''
+        name = ''
+        if os.path.exists(filename):
+            mode = input("请输入查询依据（1.ID/2.姓名）：")
+            if mode == '1':
+                id = input("请输入学生ID：")
+            elif mode == '2':
+                name = input("请输入学生姓名：")
+            else:
+                print("输入有误，请重新输入：")
+                search()
+            with open(filename, 'r', encoding='utf-8') as rfile:
+                student_list = rfile.readlines()
+            for item in student_list:
+                d = dict(eval(item))
+                if mode == '1' and d['id'] == id:
+                    student_query.append(d)
+                elif mode == '2' and d['name'] == name:
+                    student_query.append(d)
+            show_student(student_query)
+            student_query.clear()
+            answer = input("是否继续查询（y/n）：")
+            if answer == 'y' or answer == 'Y':
+                continue
+            else:
+                return
+        else:
+            print("暂未保存学生信息")
+            return
+
+def show_student(lst):
+    if len(lst) == 0:
+        print("没查到学生信息，无数据显示！！")
+        return
+    else:
+        format_title = "{:^6}\t{:^12}\t{:^10}\t{:^10}\t{:^10}\t{:^10}"
+        print(format_title.format('ID','姓名','语文成绩','数学成绩','英语成绩','总成绩'))
+        format_data = "{:^6}\t{:^12}\t{:^12}\t{:^12}\t{:^12}\t{:^12}"
+        for item in lst:
+            print(format_data.format(item['id'],item['name'],item['Chinese'],item['Math'],item['English'],
+                                     int(item['Chinese'])+int(item['Math'])+int(item['English'])))
 
 def delete():
     while True:
@@ -121,16 +163,96 @@ def delete():
                 break
 
 def modify():
-    pass
+    show()
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf-8') as rfile:
+            student_old = rfile.readlines()
+    else:
+        return
+    student_id = input("请输入要修改的学生ID：")
+    with open(filename, 'w', encoding='utf-8') as wfile:
+        for item in student_old:
+            d = dict(eval(item))
+            if d['id'] == student_id:
+                print("已找到该学生信息，可以进行修改操作！！")
+                while True:
+                    try:
+                        d['name'] = input("请输入姓名：")
+                        d['Chinese'] = input("请输入语文成绩：")
+                        d['Math'] = input("请输入数学成绩：")
+                        d['English'] = input("请输入英语成绩：")
+                    except:
+                        print("输入无效，请重新输入：")
+                        continue
+                    else:
+                        break
+                wfile.write(str(d)+'\n')
+                print("修改成功！！")
+            else:
+                wfile.write(str(d)+'\n')
+        answer = input("是否继续修改其它学生信息（y/n）：")
+        if answer == 'y' or answer == 'Y':
+            modify()
+        else:
+            return
 
 def sort():
-    pass
+    show()
+    student_lst = []
+    flag = True
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf-8') as rfile:
+            student_list = rfile.readlines()
+        for item in student_list:
+            d = dict(eval(item))
+            student_lst.append(d)
+        mode = input("请选择排序方式（0.升序/1.降序）：")
+        if mode == '0':
+            flag = False
+        elif mode == '1':
+            flag = True
+        else:
+            print("选择有误！请重新选择：")
+            sort()
+        answer = input("请选择排序依据（1.语文/2.数学/3.英语/4.总成绩）：")
+        if answer == '1':
+            student_lst.sort(key=lambda x : int(x['Chinese']),reverse=flag)
+        elif answer == '2':
+            student_lst.sort(key=lambda x : int(x['Math']),reverse=flag)
+        elif answer == '3':
+            student_lst.sort(key=lambda x : int(x['English']),reverse=flag)
+        elif answer == '4':
+            student_lst.sort(key=lambda x: int(x['Chinese'])+int(x['Math'])+int(x['English']), reverse=flag)
+        else:
+            print("选择有误！请重新选择：")
+            sort()
+        show_student(student_lst)
+    else:
+        print("暂未保存数据信息！！")
 
 def total():
-    pass
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf-8') as rfile:
+            student_list = rfile.readlines()
+        if student_list:
+            print(f"一共有{len(student_list)}名学生")
+        else:
+            print("未录入学生信息！！")
+    else:
+        print("暂未保存数据信息！！")
 
 def show():
-    pass
+    student_lst = []
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf-8') as rfile:
+            student_list = rfile.readlines()
+        for item in student_list:
+            d = dict(eval(item))
+            student_lst.append(d)
+        if student_lst:
+            show_student(student_lst)
+    else:
+        print("暂未保存数据信息！！")
 
 if __name__ == '__main__':
     main()
