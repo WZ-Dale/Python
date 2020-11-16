@@ -23,7 +23,6 @@ print("❤    ✈    ⊙")
 # 4.北京地铁1号线运行图
 print("⇌    ⇌    ⇌")
 
-
 """实操案例2"""
 # 1.输出图书信息
 publish="出版社"
@@ -173,6 +172,66 @@ for i in range(100, 1000):
     if math.pow((i%10),3)+math.pow((i//10%10),3)+math.pow((i//100),3)==i:
         print(i)
 
+"""实操案例6"""
+# 1.千年危机（千年虫问题）
+year=[82,89,88,86,85,00,99]
+print(year)
+for index,value in enumerate(year):    # 将列表的索引和值匹配
+    print(index,value)
+    if str(value)!="0":
+        year[index]=int('19'+str(value))
+    else:
+        year[index]=int('200'+str(value))
+print(year)
+year.sort()
+print(year)
+# 2.购物流程
+lst=[]
+for i in range(0,5):
+    goods=input("入库商品：")
+    lst.append(goods)
+for item in lst:
+    print(item)
+cart=[]
+while True:
+    num=input("输入要购买的商品编号：")
+    for item in lst:
+        if item.find(num)!=-1:
+            cart.append(item)
+            break
+    if num=='q':
+        break
+print("购物车中的商品：")
+for m in cart:
+    print(m)
+print("----------------")
+for i in range(len(cart)-1,-1,-1):
+    print(cart[i])
+print("----------------")
+for i in range(-1,-(len(cart)+1),-1):
+    print(cart[i])
 
-
+"""实操案例7"""
+# 1.列表转集合
+constellation=["狮子座","双子座"]
+nature=["多愁善感","积极乐观"]
+a=zip(constellation,nature)
+for item in a:
+    print(item)
+print("---------------------------")
+a=dict(zip(constellation,nature))
+print(a)
+for item in a:
+    print(item,a[item])
+key=input("请输入星座：")
+print(key,"的性格特点为：",a.get(key))
+# 2.模拟订购火车票
+d={"A":["1","a","1a"],"B":["2","b","2b"]}
+for item in d:
+    print(item,end="   ")
+    for i in d[item]:
+        print(i, end="   ")
+    print()
+p=input("输入购票：")
+print(f"车次：{p}的信息为    {d[p][0]}    {d[p][1]}    {d[p][2]}")
 
