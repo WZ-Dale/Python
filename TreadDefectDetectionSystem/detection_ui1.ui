@@ -68,7 +68,17 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,1">
      <item>
-      <widget class="QGraphicsView" name="graph_3"/>
+      <widget class="QLabel" name="label">
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1">
